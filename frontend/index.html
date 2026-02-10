@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المخازن | Restaurant Warehouse System</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <!-- Login Screen -->
+    <div id="loginScreen" class="login-container">
+        <div class="login-box">
+            <h1>🍽️ نظام إدارة المخازن</h1>
+            <p>تسجيل الدخول</p>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="اسم المستخدم" required>
+                <input type="password" id="password" placeholder="كلمة المرور" required>
+                <button type="submit">تسجيل الدخول</button>
+                <p class="demo-info">💡 Demo: username: admin, password: (any)</p>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboard" style="display:none;">
+        <header>
+            <div class="header-content">
+                <h1>🍽️ نظام إدارة المخازن</h1>
+                <div class="user-info">
+                    <span id="userWelcome"></span>
+                    <button onclick="logout()">تسجيل خروج</button>
+                </div>
+            </div>
+        </header>
+
+        <div class="main-container">
+            <nav class="sidebar">
+                <a href="#" class="active" onclick="showSection('requests')">📋 الطلبات</a>
+                <a href="#" onclick="showSection('items')">📦 الأصناف</a>
+                <a href="#" onclick="showSection('create')">➕ طلب جديد</a>
+                <a href="#" onclick="showSection('stats')">📈 إحصائيات</a>
+            </nav>
+
+            <main class="content">
+                <!-- Requests Section -->
+                <div id="requestsSection" class="section active">
+                    <h2>📋 الطلبات</h2>
+                    <div class="filters">
+                        <select id="statusFilter" onchange="loadRequests()">
+                            <option value="">جميع الحالات</option>
+                            <option value="pending">قيد الانتظار</option>
+                            <option value="approved">موافق عليها</option>
+                            <option value="completed">منتهية</option>
+                        </select>
+                    </div>
+                    <div id="requestsList" class="table-container"></div>
+                </div>
+
+                <!-- Items Section -->
+                <div id="itemsSection" class="section">
+                    <h2>📦 الأصناف</h2>
+                    <div id="itemsList" class="table-container"></div>
+                </div>
+
+                <!-- Create Request Section -->
+                <div id="createSection" class="section">
+                    <h2>➕ إنشاء طلب جديد</h2>
+                    <form id="createRequestForm" class="request-form">
+                        <input type="text" id="requestDepartment" placeholder="القسم" required>
+                        <select id="requestPriority">
+                            <option value="normal">عادي</option>
+                            <option value="high">مرتفع</option>
+                            <option value="urgent">عاجل</option>
+                        </select>
+                        <textarea id="requestNotes" placeholder="ملاحظات"></textarea>
+                        <button type="submit">إنشاء الطلب</button>
+                    </form>
+                </div>
+
+                <!-- Stats Section -->
+                <div id="statsSection" class="section">
+                    <h2>📈 إحصائيات</h2>
+                    <div id="statsContent" class="stats-grid"></div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
